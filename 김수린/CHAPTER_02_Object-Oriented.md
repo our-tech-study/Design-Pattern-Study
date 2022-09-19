@@ -67,9 +67,7 @@ A 클래스의 변화는 C 클래스까지 영향을 줄 수 있으며 C 클래�
 <pre>
 <code>
 Class A {
-	
   private B b;
-	
  }
 </code>
 </pre>
@@ -78,17 +76,15 @@ Class A {
   : 파라미터나 리턴 타입에 그 타입이 나오거나 메소드에서 그 타입의 인스턴스를 생성하는 경우
   
  <br/>
+ <pre>
 <code>
 Class A{
-	
   public method(B b){
-	
     return new B();
-	
   }
-	
 }
 </code>
+</pre>
 
 
 * 연관 관계/의존 관계 차이 
@@ -100,19 +96,21 @@ Class A{
   : B 클래스의 구현을 A 클래스가 상속 받는 관계 
   
 <br/>
+<pre>
 <code>
-Class A extends B {
-	
-}
+Class A extends B { }
 </code>
+</pre>
 
 <h5>4. 실체화 관계 (Realization)</h5>
   : 인터페이스를 구현하는 관계
 
 <br/>
+<pre>
 <code>
 Class A implements B {}
 </code> 
+</pre>
 
 
 * 상속 관계/실체화 관계 차이
@@ -130,23 +128,17 @@ Class A implements B {}
 <h3>1. 양방향 의존성 피하기</h3>
 
 <br/>
+<pre>
 <code>
 class A {
 	private B b;
 	
-	
 	public void setB(B b){
-	
 		this.b = b;
-	
 		this.b.setA(this);
-	
 	}
-	
 }
-</code>
-<br/>
-<code>
+
 class B {
 	private A a;
 	
@@ -158,6 +150,7 @@ class B {
 	
 }
 </code>
+</pre>
 
 -> 하나의 클래스를 억지로 분리해둔 형태
 A 클래스에서 setter를 call할 경우 B 클래스의 set 메서드를 call하고 있어 A와 B 사이의 관계를 항상 동기화 필요
@@ -167,31 +160,25 @@ A 클래스에서 setter를 call할 경우 B 클래스의 set 메서드를 call�
 
 <h3>2. 다중성이 적은 방향으로 선택하기</h3>
 <br/>
+<pre>
 <code>
 class A {
-	
 	private Collection<B> bs; // 1대다 (One-To-Many)
-	
 }
 
-<br/>
 class B {
 	
 }
-</code>
 
-<br/>
-<code>
 class A {
 	
 }
-</code>
-<br/>
-<code>
+
 class B {
 	private A a; //다대1 (Many-To-One)
 }
 </code>
+</pre>
 	
 -> B타입의 컬렉션을 인스턴스로 잡는다기 보다는 반대 방향을 인스턴스로 가지기
 	
