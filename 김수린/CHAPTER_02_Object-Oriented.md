@@ -66,7 +66,9 @@ A 클래스의 변화는 C 클래스까지 영향을 줄 수 있으며 C 클래�
 <br/>
 <code>
 Class A {
+	
   private B b;
+	
  }
 </code>
 
@@ -74,11 +76,16 @@ Class A {
 <h5>2. 의존 관계 (Dependency)</h5>
   : 파라미터나 리턴 타입에 그 타입이 나오거나 메소드에서 그 타입의 인스턴스를 생성하는 경우
   
+ <br/>
 <code>
 Class A{
+	
   public method(B b){
+	
     return new B();
+	
   }
+	
 }
 </code>
 
@@ -91,6 +98,7 @@ Class A{
 <h5>3. 상속 관계 (Inharitance)</h5>
   : B 클래스의 구현을 A 클래스가 상속 받는 관계 
   
+<br/>
 <code>
 Class A extends B {
 	
@@ -99,7 +107,8 @@ Class A extends B {
 
 <h5>4. 실체화 관계 (Realization)</h5>
   : 인터페이스를 구현하는 관계
-  
+
+<br/>
 <code>
 Class A implements B {}
 </code> 
@@ -118,52 +127,78 @@ Class A implements B {}
 
 <h1>좋은 의존성을 관리하기 위한 규칙)]</h1>
 <h3>1. 양방향 의존성 피하기</h3>
+
+<br/>
 <code>
 class A {
 	private B b;
 	
+	
 	public void setB(B b){
+	
 		this.b = b;
+	
 		this.b.setA(this);
+	
 	}
+	
 }
 </code>
+<br/>
 <code>
 class B {
 	private A a;
 	
 	public void setA(A a){
+	
 		this.a = a;
+	
 	}
+	
 }
 </code>
+
 -> 하나의 클래스를 억지로 분리해둔 형태
 A 클래스에서 setter를 call할 경우 B 클래스의 set 메서드를 call하고 있어 A와 B 사이의 관계를 항상 동기화 필요
+
 -> 이런 경우는 단방향 의존성으로 바꾸기
 
+
 <h3>2. 다중성이 적은 방향으로 선택하기</h3>
+<br/>
 <code>
 class A {
+	
 	private Collection<B> bs; // 1대다 (One-To-Many)
+	
 }
 
+<br/>
 class B {
+	
 }
 </code>
 
+<br/>
 <code>
 class A {
+	
 }
-
+</code>
+<br/>
+<code>
 class B {
 	private A a; //다대1 (Many-To-One)
 }
 </code>
+	
 -> B타입의 컬렉션을 인스턴스로 잡는다기 보다는 반대 방향을 인스턴스로 가지기
+	
 A가 B의 리스트를 갖는 것보다 B가 A의 단방향 참조를 갖는 형태가 좋음
 
 <h3>3. 의존성이 없다면 제거하기</h3>
 
 <h3>4. 패키지 사이의 양방향 의존성 제거하기</h3>
 패키지 사이의 양방향 의존성은 '사이클'이라 표현
+	
 이런 경우 하나의 패키지로 볼 수 있음
