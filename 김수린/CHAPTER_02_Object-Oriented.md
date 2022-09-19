@@ -57,10 +57,10 @@ A 클래스의 변화는 C 클래스까지 영향을 줄 수 있으며 C 클래�
 
 
 <h1>의존성 종류</h1>
-의존성은 크게 2가지로 나눌 수 있음 - <bold>클래스</bold> 사이의 의존성/<bold>패키지</bold> 사이의 의존성
+의존성은 크게 2가지로 나눌 수 있음 - 클래스 사이의 의존성/패키지 사이의 의존성
 
 <h3>- 클래스(class) 사이의 의존성</h3>
-  1. 연관 관계 (Association)
+<h5>1. 연관 관계 (Association)</h5>
     : A에서 B로 이동 가능
     
 <code>
@@ -68,8 +68,8 @@ Class A {
   private B b;
  }
 </code>
- 
-  2. 의존 관계 (Dependency)
+
+<h5>2. 의존 관계 (Dependency)</h5>
   : 파라미터나 리턴 타입에 그 타입이 나오거나 메소드에서 그 타입의 인스턴스를 생성하는 경우
   
 <code>
@@ -86,19 +86,22 @@ Class A{
 
 - 의존 관계 - 일시적으로 협력 관계를 경우
 
-  3. 상속 관계 (Inharitance) 
+<h5>3. 상속 관계 (Inharitance)</h5>
   : B 클래스의 구현을 A 클래스가 상속 받는 관계 
   
 <code>
-Class A extends B {}
+Class A extends B {
+	
+}
 </code>
 
-  4. 실체화 관계 (Realization)
+<h5>4. 실체화 관계 (Realization)</h5>
   : 인터페이스를 구현하는 관계
   
 <code>
 Class A implements B {}
 </code> 
+
 
 * 상속 관계/실체화 관계 차이
 - 상속 관계 - 구현이 바뀌면 영향을 받을 가능성 존재
@@ -110,8 +113,9 @@ Class A implements B {}
   패키지 사이의 의존성을 파악할 때 간단하게 확인할 수 있는 방법)
    - import문으로 패키지 참조/using문으로 namespace 참조
 
-좋은 의존성을 관리하기 위한 규칙)
-1. 양방향 의존성 피하기
+
+<h1>좋은 의존성을 관리하기 위한 규칙)]</h1>
+<h3>1. 양방향 의존성 피하기</h3>
 <code>
 class A {
 	private B b;
@@ -121,7 +125,8 @@ class A {
 		this.b.setA(this);
 	}
 }
-
+</code>
+<code>
 class B {
 	private A a;
 	
@@ -134,7 +139,7 @@ class B {
 A 클래스에서 setter를 call할 경우 B 클래스의 set 메서드를 call하고 있어 A와 B 사이의 관계를 항상 동기화 필요
 -> 이런 경우는 단방향 의존성으로 바꾸기
 
-2. 다중성이 적은 방향으로 선택하기
+<h3>2. 다중성이 적은 방향으로 선택하기</h3>
 <code>
 class A {
 	private Collection<B> bs; // 1대다 (One-To-Many)
@@ -155,8 +160,8 @@ class B {
 -> B타입의 컬렉션을 인스턴스로 잡는다기 보다는 반대 방향을 인스턴스로 가지기
 A가 B의 리스트를 갖는 것보다 B가 A의 단방향 참조를 갖는 형태가 좋음
 
-3. 의존성이 없다면 제거하기
+<h3>3. 의존성이 없다면 제거하기</h3>
 
-4. 패키지 사이의 양방향 의존성 제거하기
+<h3>4. 패키지 사이의 양방향 의존성 제거하기</h3>
 패키지 사이의 양방향 의존성은 '사이클'이라 표현
 이런 경우 하나의 패키지로 볼 수 있음
