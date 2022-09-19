@@ -132,7 +132,7 @@ Class A implements B {}
 <code>
 class A {
 	private B b;
-	
+
 	public void setB(B b){
 		this.b = b;
 		this.b.setA(this);
@@ -143,16 +143,14 @@ class B {
 	private A a;
 	
 	public void setA(A a){
-	
-		this.a = a;
-	
-	}
-	
+		this.a = a;	
+	}	
 }
 </code>
 </pre>
 
 -> 하나의 클래스를 억지로 분리해둔 형태
+
 A 클래스에서 setter를 call할 경우 B 클래스의 set 메서드를 call하고 있어 A와 B 사이의 관계를 항상 동기화 필요
 
 -> 이런 경우는 단방향 의존성으로 바꾸기
@@ -167,11 +165,9 @@ class A {
 }
 
 class B {
-	
 }
 
-class A {
-	
+class A {	
 }
 
 class B {
