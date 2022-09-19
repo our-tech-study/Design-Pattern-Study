@@ -124,7 +124,7 @@ Class A implements B {}
    - import문으로 패키지 참조/using문으로 namespace 참조
 
 
-<h1>좋은 의존성을 관리하기 위한 규칙)]</h1>
+<h1>좋은 의존성을 관리하기 위한 규칙</h1>
 <h3>1. 양방향 의존성 피하기</h3>
 
 <br/>
