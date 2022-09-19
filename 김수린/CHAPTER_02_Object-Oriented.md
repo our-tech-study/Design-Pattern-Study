@@ -63,10 +63,12 @@ A 클래스의 변화는 C 클래스까지 영향을 줄 수 있으며 C 클래�
 <h5>1. 연관 관계 (Association)</h5>
     : A에서 B로 이동 가능
 
-
+<br/>
+<code>
 Class A {
   private B b;
  }
+</code>
 
 
 <h5>2. 의존 관계 (Dependency)</h5>
