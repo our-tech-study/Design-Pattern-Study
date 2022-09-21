@@ -15,5 +15,8 @@
 - 린 - Chapter 3 Part 3.1 ~ 3.3 추상 타입과 유연함
 - 제니 - Chapter 3 Part 3.4 ~ 3.6 추상 타입과 유연함
 - 테리 - Chapter 3 Part 2 다형성과 상속
+
+## 3주차
+
 - 앨리스 -Chapter 4 Part 1 상속과 재사용
 - 피제이 - Chapter 4 Part 2 조립을 이용한 재사용
