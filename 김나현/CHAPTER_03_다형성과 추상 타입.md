@@ -109,8 +109,8 @@ public class Program
         b.getName(); // A_b
 		
 		
-		// 인터페이스 상속
-		Child_B b2 = new Child_F;
+	// 인터페이스 상속
+	Child_B b2 = new Child_F;
 		
         b2.print();
     }
