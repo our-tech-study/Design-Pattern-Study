@@ -4,7 +4,7 @@
 
 # 예시 UI
 
-![화면 구성](./asset/%ED%99%94%EB%A9%B4%EA%B5%AC%EC%84%B1.png)
+![화면 구성](./asset/CHAPTER_01/%ED%99%94%EB%A9%B4%EA%B5%AC%EC%84%B1.png)
 
 # 초기구현
 
