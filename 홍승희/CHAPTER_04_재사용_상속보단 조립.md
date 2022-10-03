@@ -96,10 +96,6 @@ ex.
 // 상위 클래스
 public class Document
 {
-      public int GetLength()
-      {
-            return GetContent().Length;
-      }
       public string GetContent()
       {
             // todo...
@@ -330,15 +326,10 @@ public class Container : List<Luggage>
 }
 ```  
 ```cs
-// Program.cs 
 var container = new Container(100);
 
 container.Put(new Luggage(30));
 container.Put(new Luggage(80));     // Add로 수정하면?
-
-foreach (var lug in container) { 
-    Console.WriteLine(lug.Size);
-}
 ```
 
 - Put을 Add로 수정하면? 🤦‍♀️  
