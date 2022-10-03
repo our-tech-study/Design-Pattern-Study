@@ -179,8 +179,8 @@ classDiagram
 ### [2]  
 |요구사항|새로운 클래스|
 |------|---|
-|"용량이 부족하니, 파일을 압축해서 저장해줘."|CompressedStorage|
-|"보안 강화가 필요하니, 파일을 암호화해서 저장해줘."|EncryptedStorage|  
+|파일 압축 후 저장|CompressedStorage|
+|파일 암호화 후 저장|EncryptedStorage|  
 
    
 ```mermaid  
@@ -203,10 +203,10 @@ classDiagram
 ### [3]  
 |요구사항|새로운 클래스|
 |------|---|
-|"압축을 먼저하고, 암호화해서 저장해줘."|CompressedEncryptedStorage|
-|"암호화를 먼저하고, 압축해서 저장해줘."|EncryptedCompressedStorage|  
-|"캐시가 적용된 저장소가 필요해."|CacheableStorage|  
-|"암호화된 저장소에 캐시 적용이 필요해."|CacheableEncryptedStorage|  
+|파일 압축 후 암호화해서 저장|CompressedEncryptedStorage|
+|파일 암호화 후 압축해서 저장|EncryptedCompressedStorage|  
+|캐시 적용|CacheableStorage|  
+|암호화된 저장소에 캐시 적용|CacheableEncryptedStorage|  
 
 ```mermaid  
 classDiagram
@@ -240,7 +240,7 @@ classDiagram
 
 </br>
 
-- `필요한 기능의 조합이 증가`할수록, 상속을 통한 기능 재사용을 하면 `클래스의 개수는 함께 증가`하게 된다.  
+- 필요한 `기능의 조합이 증가`할수록, 상속을 통한 기능 재사용을 하면 `클래스의 개수는 함께 증가`하게 된다.  
 ⇒ 클래스 폭발 
 
 </br></br>
