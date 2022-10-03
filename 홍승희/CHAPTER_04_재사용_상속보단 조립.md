@@ -28,8 +28,7 @@
 - 기존 클래스에 `기능을 추가`하거나 `재정의`하여 새로운 클래스를 정의하는 것.  
 
 ### 2. 상속의 장점? 
-- 기존 클래스의 속성(자료/함수) 재사용  
-⇒ 코드를 재사용할 수 있다.  
+- 코드 재사용이 용이하다.  
 ⇒ 중복 코드 감소.  
 
 - 다형성 구현 가능.  
@@ -88,71 +87,10 @@ public class SuperCar : Car
 
 </br> 
 
-- 상속을 하게되면, 하위 클래스가 상위 클래스에 강하게 의존.  
-- 상위 클래스의 메써드 시그니처나 필드 정의가 변경되면, 하위 클래스가 영향을 받게 된다. 
-
-ex. 
-```cs
-// 상위 클래스
-public class Document
-{
-      public string GetContent()
-      {
-            // todo...
-      }
-}
-
-// 하위 클래스
-public class CustomDocument : Document 
-{
-      public string GetCustomDocument()
-      {
-            string newContent = string.Empty;
-            var originContent = GetContent();  // * here.
-            // ... 
-            
-            return newContent;
-      }
-}
-```
-- 자식 클래스 내부에서 부모 클래스의 메써드를 직접 호출하고 있다. 
-- GetContent() 메써드의 리턴 타입이 string에서 char[]로 바뀌었다면? 
-- 계층이 깊은 경우, 최상위 클래스의 변경이 말단 클래스까지 영향을 줄 수 있다.  
+- 상속을 하게되면, 하위 클래스가 상위 클래스에 강하게 의존. 
+- 자식 클래스가 부모 클래스의 변경에 취약해지게 됨.  
+- 부모 클래스의 public 인터페이스가 아닌 구현을 변경하더라도 자식 클래스가 영향받기 쉬워짐.   
    
-```mermaid  
-classDiagram
-      Controller <|-- AbstractController
-      Controller: +handleRequest()
-      <<interface>> Controller
-      AbstractController <|-- AbstractUrlViewController
-      AbstractController <|-- BaseCommandController
-      AbstractController: +handleRequest()
-      AbstractController: #handleRequestInterval()
-      AbstractUrlViewController <|-- UrlFilenameViewController
-      BaseCommandController <|-- AbstractCommandConstroller
-      BaseCommandController <|-- AbstractFormController      
-      AbstractFormController <|-- SimpleFormController
-      class AbstractUrlViewController{
-            #handleRequestInternal()
-            #getViewNameForRequest()
-      }
-      class BaseCommandController{
-      }
-      class UrlFilenameViewController{
-            #getViewNameForRequest()
-      }
-      class AbstractCommandConstroller{
-            #handleRequestInternal()
-            #handle()
-      }
-      class AbstractFormController{
-            #handleRequestInternal()
-            #showForm()
-            #processFormSubmission()
-      }
-      class SimpleFormController{
-      }
-```   
 
 => `상속`은 클래스 간 `결합도를 높이고`, 클래스의 응집도는 낮춰  
 `자식 클래스를 수동적인 객체로` 만들어버릴 수 있다.  
