@@ -1,13 +1,16 @@
 [리스코프 치환 원칙(LSP)]
 
-#정의
-다형성에 관한 원칙으로 상위 클래스 타입의 객체를 하위 클래스 타입의 객체로 치환해도 상위타입을 사용하는 코드는 원래의 의도대로 동작해야함
-= 서브클래스와 부모클래스는 언제나 호환될 수 있어야하며 서브클래스는 부모클래스의 행동규약을 준수해야함
 
-위반되는 경우 부모-서브 클래스 간의 is-a 관계가 무너지고 다형성에 기반한 개방 폐쇄 원칙 또한 지켜지지 않음
+#정의
+
+ 다형성에 관한 원칙으로 상위 클래스 타입의 객체를 하위 클래스 타입의 객체로 치환해도 상위타입을 사용하는 코드는 원래의 의도대로 동작해야함
+ = 서브클래스와 부모클래스는 언제나 호환될 수 있어야하며 서브클래스는 부모클래스의 행동규약을 준수해야함
+
+ 위반되는 경우 부모-서브 클래스 간의 is-a 관계가 무너지고 다형성에 기반한 개방 폐쇄 원칙 또한 지켜지지 않음
 
 
 # 위반사례
+
  - 명시된 명세에서 벗어난 값 리턴 (2)
  - 명시된 명세에서 벗어난 예외 발생
  - 명시된 명세에서 벗어난 기능 수행 (1)
@@ -55,6 +58,31 @@
             this.Width = height;
         }
     }
+    
+    
+    Draw draw = new Draw();
+    Rectangle rec = new Rectangle();
+
+    rec.SetHeight(10);
+    rec.SetWidth(5);
+
+    Console.WriteLine(rec.GetHeight()); // 10
+    Console.WriteLine(rec.GetWidth()); // 5
+
+    draw.IncreaseHeight(rec);
+
+    Console.WriteLine(rec.GetHeight()); // 20
+    Console.WriteLine(rec.GetWidth()); // 5
+
+
+    Squre sqr = new Squre();
+    sqr.SetHeight(10);
+    sqr.SetWidth(5);
+
+    draw.IncreaseHeight(sqr);
+
+    Console.WriteLine(rec.GetHeight()); // 15
+    Console.WriteLine(rec.GetWidth()); // 15
  
  
  IncreaseHeight() 메소드 실행 후에는 width보다 height의 값이 더 크다고 가정할 수 있지만 Squre 타입 객체를 매개변수로 전달하면 가정과는 다른 결과 출력
