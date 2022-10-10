@@ -95,3 +95,62 @@
  IncreaseHeight() 메소드 실행 후에는 width보다 height의 값이 더 크다고 가정할 수 있지만 Squre 타입 객체를 매개변수로 전달하면 가정과는 다른 결과 출력
 
 개념적으로는 상속관계에 있는 것 처럼 보이지만 실제 구현 시에는 상속관계가 아닐 수도 있음
+
+
+1-2.
+    class Ellipse
+    {
+        public double MajorAxis { get; set; } // 긴 반지름
+        public double MinorAxis { get; set; } // 짧은 반지름
+
+        public virtual void SetMajorAxis(double majorAxis)
+        {
+            MajorAxis = majorAxis;
+        }
+
+        public virtual void SetMinorAxis(double minorAxis)
+        {
+            MinorAxis = minorAxis;
+        }
+
+        public virtual double Area()
+        {
+            //return MajorAxis * MinorAxis * Math.PI;
+            return MajorAxis * MinorAxis;
+        }
+        
+    }
+
+    class Circle : Ellipse
+    {
+        public override void SetMajorAxis(double majorAxis)
+        {
+            base.SetMajorAxis(majorAxis);
+            this.MinorAxis = majorAxis; // 원은 반지름이 동일
+        }
+
+        // 중복되는 데이터 및 로직 
+        //public override void SetMinorAxis(double majorAxis)
+        //{
+        //}
+    }
+    
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Circle circle = new Circle();
+            circle.SetMajorAxis(5);
+            circle.SetMinorAxis(4);
+
+            var area = circle.Area();
+            Console.WriteLine(area); //20
+
+        }
+    }
+    
+    
+Circle Class에서 SetMajorAxis 메소드는 수정되었지만, 수정되지 않은 SetMinorAxis 메소드는 버그를 발생
+ → 원의 경우 모든 반지름이 동일한데 SetMinorAxis 메소드에서는 MajorAxis 값을 재할당하는 로직이 구현되어 있지 않으므로 MajorAxis, MinorAxis 값이 서로 다르고  예상과 결과가 다를 수 있음
+    
