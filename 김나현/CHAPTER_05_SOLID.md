@@ -15,6 +15,7 @@
  - 명시된 명세에서 벗어난 예외 발생
  - 명시된 명세에서 벗어난 기능 수행 (1)
  
+ 
  1-1.
  
     class Rectangle
@@ -98,6 +99,7 @@
 
 
 1-2.
+
     class Ellipse
     {
         public double MajorAxis { get; set; } // 긴 반지름
