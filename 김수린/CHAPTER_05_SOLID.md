@@ -83,8 +83,6 @@ public class Car implements Vehicle {
 하지만 Car class를 fly를 사용하지 X  <br/>
 -> <b>ISP 위반</b> 
 
-<h3>인터페이스 분리 원칙 적용</h3>
-<br/> 
 
 위의 예시에 인터페이스 분리 원칙을 적용한다면? <br/> 
 -> Vehicle 인터페이스를 'Movable', 'Flyable' 인터페이스로 나누고 <br/>
@@ -92,6 +90,7 @@ public class Car implements Vehicle {
 
 <br/> 
 <br/> 
+
 ```
 public interface Movable { 
 	public void go();
