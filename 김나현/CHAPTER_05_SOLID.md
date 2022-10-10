@@ -60,29 +60,36 @@
     }
     
     
-    Draw draw = new Draw();
-    Rectangle rec = new Rectangle();
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Draw draw = new Draw();
+            Rectangle rec = new Rectangle();
 
-    rec.SetHeight(10);
-    rec.SetWidth(5);
+            rec.SetHeight(10);
+            rec.SetWidth(5);
 
-    Console.WriteLine(rec.GetHeight()); // 10
-    Console.WriteLine(rec.GetWidth()); // 5
+            Console.WriteLine(rec.GetHeight()); // 10
+            Console.WriteLine(rec.GetWidth()); // 5
 
-    draw.IncreaseHeight(rec);
+            draw.IncreaseHeight(rec);
 
-    Console.WriteLine(rec.GetHeight()); // 20
-    Console.WriteLine(rec.GetWidth()); // 5
+            Console.WriteLine(rec.GetHeight()); // 20
+            Console.WriteLine(rec.GetWidth()); // 5
 
 
-    Squre sqr = new Squre();
-    sqr.SetHeight(10);
-    sqr.SetWidth(5);
+            Squre sqr = new Squre();
+            sqr.SetHeight(10);
+            sqr.SetWidth(5);
 
-    draw.IncreaseHeight(sqr);
+            draw.IncreaseHeight(sqr);
 
-    Console.WriteLine(rec.GetHeight()); // 15
-    Console.WriteLine(rec.GetWidth()); // 15
+            Console.WriteLine(rec.GetHeight()); // 15
+            Console.WriteLine(rec.GetWidth()); // 15
+
+        }
+    }
  
  
  IncreaseHeight() 메소드 실행 후에는 width보다 height의 값이 더 크다고 가정할 수 있지만 Squre 타입 객체를 매개변수로 전달하면 가정과는 다른 결과 출력
