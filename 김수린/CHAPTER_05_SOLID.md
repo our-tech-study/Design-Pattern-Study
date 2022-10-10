@@ -10,15 +10,18 @@
 ## 목차
 
 ## 1.개요
-<h3>SOLID</h3>
+<h3>SOLID</h3> <br/>
 : 객체 지향적으로 설계하는데 기본이 되는 설계 원칙  
 
-<h3>SOLID 설계 원칙)</h3>
-- 단일 책임 원칙 (Single Responsibility Principle; SRP)  
-- 개방-폐쇄 원칙 (Open-Closed Principle; OCP)  
-- 리스코프 치환 원칙 (Liskov Substitution Principle; LSP)  
-- 인터페이스 분리 원칙 (Interface Segregation Principle; ISP)  
-- 의존 역전 원칙 (Dependency Inversion Principle; DIP)  
+<br/>
+<br/>
+
+<h3>SOLID 설계 원칙)</h3> <br/>
+- 단일 책임 원칙 (Single Responsibility Principle; SRP) <br/> 
+- 개방-폐쇄 원칙 (Open-Closed Principle; OCP)  <br/>
+- 리스코프 치환 원칙 (Liskov Substitution Principle; LSP)  <br/>
+- 인터페이스 분리 원칙 (Interface Segregation Principle; ISP)  <br/>
+- 의존 역전 원칙 (Dependency Inversion Principle; DIP)  <br/>
 
 <br/>
 <br/>
