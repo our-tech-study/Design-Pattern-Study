@@ -84,7 +84,7 @@ public class Car implements Vehicle {
 -> <b>ISP 위반</b> 
 
 <h3>인터페이스 분리 원칙 적용</h3>
-</hr>
+<hr/>
 <br/> 
 
 위의 예시에 인터페이스 분리 원칙을 적용한다면? <br/> 
