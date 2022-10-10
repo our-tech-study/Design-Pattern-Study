@@ -15,7 +15,10 @@
  - 명시된 명세에서 벗어난 값 리턴 (2)
  - 명시된 명세에서 벗어난 예외 발생
  - 명시된 명세에서 벗어난 기능 수행 (1)
- 
+
+
+ ![Liskov1](https://user-images.githubusercontent.com/67131292/194946315-a547b8c0-f4b7-47cf-8d6b-738be22498cc.png)
+
  
  1-1.
  
