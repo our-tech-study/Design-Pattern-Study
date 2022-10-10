@@ -132,6 +132,7 @@
         }
 
         // 중복되는 데이터 및 로직 
+        // 리스코프 치환 원칙이 위반되면 기능 확장을 위해 같은 소스를 여러번 수정하는 빈도가 높아짐
         //public override void SetMinorAxis(double majorAxis)
         //{
         //}
@@ -154,5 +155,48 @@
     
     
 Circle Class에서 SetMajorAxis 메소드는 수정되었지만, 수정되지 않은 SetMinorAxis 메소드는 버그를 발생
+ 
  → 원의 경우 모든 반지름이 동일한데 SetMinorAxis 메소드에서는 MajorAxis 값을 재할당하는 로직이 구현되어 있지 않으므로 MajorAxis, MinorAxis 값이 서로 다르고  예상과 결과가 다를 수 있음
+
+
+    class Circle
+    {
+        public double Radius { get; set; } // 반지름
+
+        public void SetRadius(double radius)
+        {
+            this.Radius = radius;
+        }
+
+        public double Area()
+        {
+            //return this.Radius * this.Radius * Math.PI;
+            return this.Radius * this.Radius;
+        }
+        
+    }
     
+Circle 클래스를 재구현하거나, 
+    
+        abstract class Shape
+    {
+        public abstract double Area();
+    }
+
+    public class Ellipse : Shape
+    {
+        public override double Area()
+        {
+            return MajorAxis * MinorAxis * Math.PI;
+        }
+    }
+
+    public class Circle : Shape
+    {
+        public override double Area()
+        {
+            return this.Radius * this.Radius * Math.PI;
+        }
+    }
+    
+추상클래스를 활용하여 각 클래스와의 관계를 유연하게 설계
