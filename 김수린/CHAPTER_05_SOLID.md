@@ -16,7 +16,7 @@
 <br/>
 <br/>
 
-<h3>SOLID 설계 원칙)</h3> <br/>
+<h3>SOLID 설계 원칙)</h3> 
 - 단일 책임 원칙 (Single Responsibility Principle; SRP) <br/> 
 - 개방-폐쇄 원칙 (Open-Closed Principle; OCP)  <br/>
 - 리스코프 치환 원칙 (Liskov Substitution Principle; LSP)  <br/>
