@@ -1,6 +1,6 @@
 # Chapter5. 설계 원칙: SOLID
 
-> **5. 의존 역전 원칙(Dependency Inversion principle) **  
+>5. 의존 역전 원칙(Dependency Inversion principle)  
 5.1. 고수준 모듈이 저수준 모듈에 의존할 때의 문제   
 5.2. 의존 역전 원칙을 통한 변경의 유연함 확보        
 5.3. 소스 코드 의존과 런타임 의존        
