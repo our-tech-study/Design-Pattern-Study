@@ -178,7 +178,7 @@ Circle Class에서 SetMajorAxis 메소드는 수정되었지만, 수정되지 �
     
 Circle 클래스를 재구현하거나, 
     
-        abstract class Shape
+    abstract class Shape
     {
         public abstract double Area();
     }
@@ -200,3 +200,24 @@ Circle 클래스를 재구현하거나,
     }
     
 추상클래스를 활용하여 각 클래스와의 관계를 유연하게 설계
+
+
+2.
+
+    class CopyUtil
+    {
+        public void Copy(String word, StreamReader input, StreamWriter output)
+        {
+            var buffer = word.ToCharArray();
+
+            while (input.Read(buffer, 0, buffer.Length) != 0)
+            {
+                output.Write(buffer);
+            }
+        }
+    }
+    
+  
+더이상 읽어올 문자열이 없는 경우 0을 리턴하므로 Copy() 메소드는 리턴값이 0이 아닐 때까지 반복해서 데이터를 읽고 씀
+
+StreamReader를 상속받는 하위 클래스에서 read()메소드를 재정의하고 더이상 읽어올 데이터가 없을 때 0이 아닌 다른 값을 리턴하도록 구현하면, Copy()메소드는 무한루프를 돌면서 실행이 끝나지 않게 됨 
