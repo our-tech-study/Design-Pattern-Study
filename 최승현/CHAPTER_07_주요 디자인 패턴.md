@@ -103,22 +103,28 @@ public class Calculator {
 ## 상태(State) 패턴
 
 1. 정의
-   - 상태에 의존적인 객체를 상태관점에서 따로 분리하여 객체의 행동을 다루는 패턴
+
+- 객체의 내부 상태에 따라 변경되는 행동을 다루는 패턴
+
+2. 구성요소
+
+- Context
+  - 사용자가 관심 있는 인터페이스를 정의한다.
+  - 객체의 각 상태를 정의한 State의 구현체 인스턴스를 관리한다.
+- State
+  - Context의 각 상태별 행동을 정의한다.
+
 2. 클래스 다이어그램
    - <img alt="상태패턴" src="./asset/상태패턴.png" width="900px">
 3. 사용시점
-   - 객체의 행동에 영향을 미치는 객체의 속성 '상태'가 존재한다.
-   - 상태값을 저장하기 위한 인스턴스 변수를 만들고, 메서드 내에서는 조건문을 써서 다양한 상태를 처리한다.
-   - 상태에 따라 동일한 기능 요청의 처리를 다르게 함
-   - 함수 안에 case나 if-else가 중복될 때
+   - 객체의 행동에 영향을 미치는 상태가 존재
+   - 상태에 따른 행위를 처리하기 위해 switch 또는 if-else를 복잡하게 사용하는 경우
 4. 사용효과
-   - 각 상태의 행동을 별개의 클래스로 국지화 - 코드를 수정하거나 이해하기가 쉬워짐
-   - 관리하기 힘든 골칫덩어리 if 선언문들을 없앰
+   - 각 상태의 행동을 별개의 클래스 분리 - 코드를 수정하거나 이해하기가 쉬워짐
+   - 관리하기 힘든 if 선언문들을 없앰
    - 특정 형식의 상태 추가나 삭제를 빠르고 유연하게 대처할 수 있게 됩니다.
    - 새로운 상태가 추가되더라도 컨텍스트 코드가 받는 영향은 최소화된다.
    - 상태에 따른 동작을 구현한 코드가 각 상태 별로 구분되기 때문에 상태별 동작을 수정하기 쉽다.
-5. 사용예
-   - ECount Report에서 resizable, moveable, editable 상태에 따라 다르게 처리
 
 ### 상태 패턴 예시
 
@@ -132,7 +138,7 @@ public class Calculator {
 
 ```java
 public class VendingMachine {
-  public static enum State { NOCOIN, SELECTABLE }
+  public static enum State { NOCOIN, SELECTABLE } // SOLDOUT
 
   private State state = State.NOCOIN;
 
