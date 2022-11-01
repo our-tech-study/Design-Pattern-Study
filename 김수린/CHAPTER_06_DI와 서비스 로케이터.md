@@ -269,8 +269,10 @@ worker.setJobQueue(jobQueue).setTransCoder(transcoder); // 메서드 체이닝 �
 <h3>생성자 방식의 장단점)</h3>
 <h4>- 장점</h4>
  - 생성자를 통해 필요한 의존 객체를 전달받기 때문에 객체를 생성하는 시점에서 의존 객체가 정상인지 확인 가능
- <br/>
- ```
+
+<br/>
+
+```
 public class JobCLI {
 	private JobQueue jobQueue;
 	
