@@ -322,6 +322,7 @@ worker.run(); // jobQueue, transcoder가 null이므로 NullException 발생
 
 <br/>
 <br/>
+
 ## 4. DI와 테스트
 
 * DI는 의존 객체를 Mock 객체로 쉽게 대체할 수 있도록 하여 단위 테스트를 할 수 있도록 도움
