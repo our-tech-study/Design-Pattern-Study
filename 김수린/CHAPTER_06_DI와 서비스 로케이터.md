@@ -190,7 +190,7 @@ public class child extend finalClass { // 컴파일 에러 발생
 <br/>
 <br/>
 <h3>2. 설정 메서드 방식</h3>
-: 메서드를 이용해 의존 객체 전달받는 방식
+: 메서드를 이용해 의존 객체 전달받는 방식<br/>
 
 <br/>
 ```
@@ -218,6 +218,7 @@ public class Worker {
 
 * 아래와 같은 케이스로도 작성 가능<br/>
 또 다른 케이스 1)
+
 ```
 public void configure(JobQueue jobQueue, Transcoder transcoder){ // 한 개의 메서드로 의존 객체 모두 설정 
 	this.JobQueue = jobQueue;
@@ -227,6 +228,7 @@ public void configure(JobQueue jobQueue, Transcoder transcoder){ // 한 개의 �
 <br/>
 
 또 다른 케이스 2)
+
 ```
 public Worker setJobQueue(JobQueue jobQueue){ // 메서드 체이닝이 가능하도록 리턴 타입을 void에서 Worker로 변경
 		this.jobQueue = jobQueue;
