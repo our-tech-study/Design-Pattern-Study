@@ -277,8 +277,8 @@ public class JobCLI {
 	public JobCLI(JobQueue jobQueue){
 		if(jobQueue == null){ //생성 시점에 의존 객체를 모두 받기 때문에 한번 객체가 생성되면 객체가 정상적으로 동작함을 보장 가능
 			throw null IllegalArgumentException();
-		this.jobQueue = jobQueue;
 		}
+		this.jobQueue = jobQueue;
 	}
 }
 ```
