@@ -134,7 +134,9 @@ public class MyServiceLocator extends ServiceLocator {
     
     public MyServiceLocator() {
         super(); // 부모의 생성자 호출 
-        this.jobQueue = new FileJobQueue();
+        
+        // 실제로 필요한 의존객체 생성
+        this.jobQueue = new FileJobQueue();
         this.transcoder = new FfmpegTranscoder();
     }
     
