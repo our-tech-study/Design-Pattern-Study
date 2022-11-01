@@ -312,12 +312,14 @@ worker.setStateListener(...);
 ```
  
 <h4>단점</h4> 
- - 의존 객체를 설정하지 못한 상태에서 객체 사용하면 NullException 발생할 수 있음
+ - 의존 객체를 설정하지 못한 상태에서 객체 사용하면 NullException 발생할 수 있음<br/>
 <br/>
+
 ```
 Worker worker = new Worker();
 worker.run(); // jobQueue, transcoder가 null이므로 NullException 발생
 ```
+
 <br/>
 <br/>
 ## 4. DI와 테스트
