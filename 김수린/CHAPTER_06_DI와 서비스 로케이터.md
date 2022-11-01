@@ -193,6 +193,8 @@ public class child extend finalClass { // 컴파일 에러 발생
 : 메서드를 이용해 의존 객체 전달받는 방식<br/>
 
 <br/>
+<br/>
+
 ```
 public class Worker {
 	private JobQueue jobQueue;
@@ -210,6 +212,7 @@ public class Worker {
 		while(someRunningCondition){
 			JobData jobData = jobQueue.getJob(); // 다른 메서드에서는 필드를 사용하여 의존 객체의 기능을 실행
 			transcoder.transcode(jobData.getSource(), jobData.getTarget());
+		}
 	}
 }
 ```
