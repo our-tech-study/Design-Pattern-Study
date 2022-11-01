@@ -23,32 +23,35 @@ public class Worker {
 }
 ```
 
-의존 역전 원칙: 고수준 모듈은 저수준 모듈의 '구현'에 의존해서는 안 된다. 저수준 모듈이 고수준 모듈에서 정의한 '추상 타입'에 의존해야 한다. <br/>
+<h3>의존 역전 원칙</h3>
+: 고수준 모듈은 저수준 모듈의 <b>'구현'</b>에 의존해서는 안 된다. 저수준 모듈이 고수준 모듈에서 정의한 <b>'추상 타입'</b>에 의존해야 한다. <br/>
 => 자신보다 변하기 쉬운 것에 의존하지 마라 
 
 <br/>
 <br/>
 
-콘크리트 클래스를 직접 사용해서 객체 사용하게 되면? <br/>
-=> 의존 역전 원칙 위반하여 결과적으로 확장 폐쇄 원칙 위반<br/>
+콘크리트 클래스를 직접 사용해서 객체 사용하게 되면 ❔ <br/>
+=> <b>의존 역전 원칙 위반</b>하여 결과적으로 <b>확장 폐쇄 원칙 위반</b><br/>
 => SOLID 원칙에 위반하여 유연하지 못한 코드 만들게 됨<br/>
 
 <br/>
 <br/>
 
-메인 영역: 어플리케이션 영역의 객체를 생성하고, 설정하고, 실행하는 책임을 갖는 영역<br/>
+<h3>메인 영역</h3>
+: <b>어플리케이션 영역의 객체</b>를 생성하고, 설정하고, 실행하는 책임을 갖는 영역<br/>
 => 어플리케이션 영역에서 사용할 하위 수준의 모듈을 변경하고 싶다면 메인 영역 수정하면 됨
 
 <br/>
 <br/>
 
-DI(Dependency Injection, 의존성 주입)<br/>
+<h3>DI(Dependency Injection, 의존성 주입)</h3><br/>
 : 메인 영역에서 객체를 연결하기 위해 사용되는 방법으로 <b>필요한 객체를 직접 생성하거나 찾지 않고</b> 외부에서 넣어주는 방식
 
 <br/>
 <br/>
 
 ## 2. 생성자 방식과 설정 메서드 방식
+
 <h3>DI를 적용하기 위해 의존하는 객체를 전달받을 수 있는 방법)</h3>
 1. 생성자 방식<br/>
 2. 설정 메서드 방식<br/>
@@ -119,14 +122,14 @@ public class Main {
 <br/>
 
 잠깐 👩 .. <br/>
-* final 예약어: JAVA에 존재하는 예약어<br/>
-final 키워드 사용해 객체를 한번만 할당할 수 있음<br/>
+- final 예약어: JAVA에 존재하는 예약어<br/>
+final 키워드 사용해 객체를 한 번만 할당할 수 있음<br/>
 즉, 객체를 불변값으로 지정 (1번만 초기화 가능)<br/>
 
 <br/>
 <br/>
 - 필드에 사용할 경우) <br/>
-기능: 수정 불가 
+기능: 수정 불가 <br/>
 
 <br/>
 
@@ -146,8 +149,8 @@ person.setAge(28); // 가능
 <br/>
 <br/>
 
-- 메소드에 사용할 경우)
-기능: 메소드 오버라이드 제한
+- 메소드에 사용할 경우)<br/>
+기능: 메소드 오버라이드 제한<br/>
 
 ```
 public class parent {
@@ -161,9 +164,12 @@ public class child extend parent {
 }
 ```
 
-- 클래스에 사용할 경우)
-기능: final로 선언된 클래스는 다른 클래스에 상속될 수 없음
-=> final 통해 클래스의 상속 제한
+<br/>
+<br/>
+
+- 클래스에 사용할 경우)<br/>
+기능: final로 선언된 클래스는 다른 클래스에 상속될 수 없음<br/>
+=> final 통해 클래스의 상속 제한<br/>
 
 ```
 public final class finalClass {
@@ -176,16 +182,17 @@ public class child extend finalClass { // 컴파일 에러 발생
 ```
 <br/>
 
-* C#에서 자바의 final과 유사한 예약어) 
-변수 - readonly, const
-메서드 - sealed
-클래스 - sealed
+* C#에서 자바의 final과 유사한 예약어) <br/>
+변수 - readonly, const<br/>
+메서드 - sealed<br/>
+클래스 - sealed<br/>
 
 <br/>
 <br/>
 <h3>2. 설정 메서드 방식</h3>
 : 메서드를 이용해 의존 객체 전달받는 방식
 
+<br/>
 ```
 public class Worker {
 	private JobQueue jobQueue;
@@ -206,8 +213,10 @@ public class Worker {
 	}
 }
 ```
+<br/>
+<br/>
 
-* 아래와 같은 케이스로도 작성 가능
+* 아래와 같은 케이스로도 작성 가능<br/>
 또 다른 케이스 1)
 ```
 public void configure(JobQueue jobQueue, Transcoder transcoder){ // 한 개의 메서드로 의존 객체 모두 설정 
@@ -229,13 +238,15 @@ public Worker setTransCoder(Transcoder transcoder){
 	return this;
 }
 ```
+<br/>
+<br/>
 
-잠깐 👩 .. 
-<b>메서드 체이닝:</b>
-연속적인 코드 줄에서 개체의 메소드를 반복적으로 호출하는 것
-=> 메서드가 객체를 반환하면 그 반환 값(객체)이 또 다른 메서드를 호출할 수 있음
+잠깐 👩 .. <br/>
+<b>메서드 체이닝:</b><br/>
+연속적인 코드 줄에서 개체의 메소드를 반복적으로 호출하는 것<br/>
+=> 메서드가 객체를 반환하면 그 반환 값(객체)이 또 다른 메서드를 호출할 수 있음<br/>
+<br/>
 
-=>
 ```
 Worker worker = new Worker();
 worker.setJobQueue(jobQueue);
@@ -251,9 +262,9 @@ worker.setJobQueue(jobQueue).setTransCoder(transcoder); // 메서드 체이닝 �
 ## 3. DI의 각 방식의 장단점
 
 <h3>생성자 방식의 장단점)</h3>
-<h4>장점</h4>
+<h4>- 장점</h4>
  - 생성자를 통해 필요한 의존 객체를 전달받기 때문에 객체를 생성하는 시점에서 의존 객체가 정상인지 확인 가능
- 
+ <br/>
  ```
 public class JobCLI {
 	private JobQueue jobQueue;
@@ -266,17 +277,21 @@ public class JobCLI {
 	}
 }
 ```
+<br/>
+<br/>
 
-<h4>단점</h4> 
+<h4>- 단점</h4> 
  - 생성자 방식을 사용하려면 의존 객체가 먼저 생성되어 있어야 하므로 의존 객체를 먼저 생성할 수 없다면 생성자 방식 사용 불가
+<br/>
 
 ```
 JobCLI jobCli = new JobCLI(null); // 생성 시점에 Exception 발생
 jobCli.interact(); // 코드가 실행되지 X
 ```
+<br/>
+<br/>
 
-
-<h3>설정 메서드 방식의 장단점)/<h3>
+<h3>설정 메서드 방식의 장단점)</h3>
 <h4>장점</h4>
  - 객체를 생성한 뒤에 의존 객체 주입 가능
  - 의존할 객체가 많을 경우 메서드 이름을 통해 어떤 의존 객체가 설정되는 지 생성자 방식보다 쉽게 알 수 있음 (코드 가독성 ⬆)
@@ -291,15 +306,17 @@ worker.setStateListener(...);
  
 <h4>단점</h4> 
  - 의존 객체를 설정하지 못한 상태에서 객체 사용하면 NullException 발생할 수 있음
-
+<br/>
 ```
 Worker worker = new Worker();
 worker.run(); // jobQueue, transcoder가 null이므로 NullException 발생
 ```
-
+<br/>
+<br/>
 ## 4. DI와 테스트
 
 * DI는 의존 객체를 Mock 객체로 쉽게 대체할 수 있도록 하여 단위 테스트를 할 수 있도록 도움
+<br/>
 
 ```
 // 테스트 코드에서 Mock 객체를 만들어 전달하기 쉬움
@@ -315,7 +332,8 @@ public void shouldRunSuccessfully(){
 }
 ```
 <br/>
-	
+<br/>
+
 DI를 사용하지 않을 경우?
 -> JobQueue의 구현 객체를 구할 수 있는 방법 필요 
 
@@ -338,6 +356,7 @@ public class Wokrer {
 ```
 <br/>
 <br/>
+
 만약 DbJobQueue 클래스의 구현이 완성되지 않았다면? <br/>
 -> Wokrer 클래스 테스트 하기 위해 JobQueue.getInstance() 메서드가 Mock 객체 리턴하도록 코드 수정 필요함<br/>
 => 한 클래스의 테스트 때문에 다른 클래스의 코드를 변경하는 상황 발생<br/>
@@ -347,6 +366,8 @@ public class Wokrer {
 <br/>
 만약 Wokrer 코드의 일부가 변경되어 Worker 클래스를 테스트 하려면 위와 같은 과정 반복 필요함
 
+<br/>
+<br/>
 <br/>
 <br/>
 
