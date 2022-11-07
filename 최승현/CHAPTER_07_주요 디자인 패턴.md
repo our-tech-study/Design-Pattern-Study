@@ -9,7 +9,7 @@
 - 각 패턴의 장단점을 통해서 설계를 선택하는데 도움을 얻을 수 있다.
 - 설계 패턴에 이름을 붙임으로써 시스템의 문서화, 이해, 유지 보수에 도움을 얻을 수 있다.
 
-## 전략(Strategy) 패턴
+# 전략(Strategy) 패턴
 
 - 정의
   - 특정 콘텍스트에서 알고리즘을 별도로 분리하는 설계 방법
@@ -70,7 +70,7 @@ public class Calculator {
 }
 ```
 
-## 템플릿 메서드(Template Method) 패턴
+# 템플릿 메서드(Template Method) 패턴
 
 1. 정의
 
@@ -100,7 +100,7 @@ public class Calculator {
 
 전략 패턴과 조합하여 사용할 경우 상속을 기반에 두지 않고 조립/위임을 사용하여 런타임에 템플릿 메서드에서 사용할 객체를 교체할 수 있는 장점을 갖게 된다.
 
-## 상태(State) 패턴
+# 상태(State) 패턴
 
 1. 정의
 
@@ -295,3 +295,180 @@ OCP 원칙이 잘 적용되어 VendingMachine은 변경에 닫혀 있고 상태 
 
 - State 패턴은 상태를 가지는 객체가 내부적으로 상태에 따라 로직을 분리해서 사용한다.
 - Strategy 패턴은 클라이언트가 객체의 행위(전략)를 변경할 수 있다.
+
+# 데코레이터(Decorator) 패턴
+
+1. 정의
+   - 기본 기능을 하는 객체와 다양한 부가 기능을 하는 데코레이터들을 조합하여 기능을 확장할 수 있는 패턴
+2. 클래스 다이어그램
+   - <img alt="데코레이터패턴" src="./asset/데코레이터패턴.png" width="900px">
+3. 구성요소
+   - Component
+     - 기본 기능을 뜻하는 ConcreteComponent와 부가 기능을 뜻하는 Decorator의 공통 기능을 정의한다.
+   - ConcreteComponent
+     - Component의 인터페이스를 구현한다.
+     - 기본 기능을 한다.
+     - 여러 부가기능으로 장식을 할 수 있다.
+   - Decorator
+     - Component와 동일한 인터페이스를 가진다.
+     - 장식할 대상이 되는 Component 역할도 한다.
+     - 자신이 장식하고 있는 Component 객체를 인스턴스 변수로 가지고 있다.
+     - 다양한 부가기능을 나타내는 구체적인 Decorator의 공통 기능(인터페이스)을 제공한다.
+   - ConcreteDecorator
+     - Decorator의 인터페이스를 구현한다.
+     - 기본 기능에 다양한 부가기능을 조합하여 추가할 수 있다.
+4. 사용시점
+   - 기본 기능과 다양한 부가기능이 존재한다.
+   - 부가기능은 기본기능을 활용한다.
+   - 부가기능은 여러가지 방식으로 조합이 가능하다.
+5. 사용효과
+   - 많은 데코레이터를 생성할 수 있다는 것이다.
+   - 실시간으로 특정한 객체에 다양한 행동을 부여할 수 있게 한다.
+   - 상속을 이용할 경우 다양한 조합의 기능 확장 제공 시 불필요한 클래스 증가로 이어지는데 상속을 사용하지 않으므로 해당 문제를 해결 할 수 있다.
+
+```Java
+public abstract class Decorator implements FileOut {
+  private FileOut delegate;
+  public Decorator(FileOut delegate) {
+    this.delegate = delegate;
+  }
+
+  protected void doDelegate(byte[] data) {
+    delegate.write(data);
+  }
+}
+
+public class EncryptionOut extends Decorator {
+  public EncryptionOut(FileOut delegate) {
+    super(delegate);
+  }
+
+  public void write(byte[] data) {
+    byte[] encryptedData = encrypt(data);
+    super.doDelegate(encryptedData)
+  }
+
+  private byte[] encrypt(byte[] data) {
+    //...
+  }
+}
+FileOut delegate = new FileOutImpl();
+FileOut fileOut = new EncryptionOut(new ZipOut(delegate));
+fileOut.write(data);
+```
+
+# 프록시(Proxy)
+
+1. 정의
+   - 어떤 객체의 접근을 제어하는 대리 객체를 제공하여 다양한 선행처리(접근제한, 캐시이용 등)를 하는 패턴
+2. 클래스다이어그램
+   - ![프록시 패턴 클래스다이어그램](./asset/proxy_pattern_uml.png)
+3. 구성요소
+   - Proxy
+     - Proxy에는 RealSubject 객체에 대한 레퍼런스가 들어 있다.
+     - 클라이언트의 요구를 처리할 수 있으면 본인이 처리하고 처리할 수 없다면 RealSubject에게 위임하여 처리한다.
+   - RealSubject
+     - 실제 작업을 대부분 처리하는 객체이다.
+   - Client
+     - Proxy를 이용한다.
+4. 사용시점
+   - 시스템을 기동하는데 있어서 중요한 역할을 하거나 중대한 영향을 미치는 객체가 존재한다.
+   - 그 객체에 보안이나 성능향상을 위해 접근 제어를 할 필요가 있다.
+5. 사용효과
+   - 캐시를 활용하여 성능을 향상시킬 수 있다.
+   - 접근을 제어하여 보안이 중요한 객체를 보호할 수 있다.
+
+# 어댑터(Adapter)
+
+## 예시
+
+- 한국 전자기기는 220V로 나옴 만약 해당 전자기기를 일본에서 쓰고 싶지만 일본은 110V만 사용 가능  
+  그렇다면 220V 전자기기를 사용하고 싶으니 일본 표준 전압을 220V로 바꿔달라고 할 수 있을까??  
+  불가능하다.  
+  그래서 돼지코 어댑터 처럼 220V -> 110V로 변환해서 사용
+
+1. 정의
+
+- 재사용하려는 클래스가 제공하는 인터페이스와 클라이언트가 사용하는 인터페이스가 다를 경우가 있는 데 어댑터 클래스를 이용하여 인터페이스를 일치시키는 패턴
+
+2. 클래스 다이어그램
+   - ![어댑터 패턴 클래스다이어그램](./asset/adapter_pattern_uml.png)
+3. 구성요소
+   - Target
+     - 클라이언트에게 필요한 메서드(request())를 제공한다.
+   - Client
+     - Target에서 제공하는 메서드를 사용한다.
+   - Adaptee
+     - 클라이언트가 원하는 기능을 구현하는 메서드를 가지고 있다.
+   - Adapter
+     - Adaptee가 제공하는 메서드를 사용하고 Target 인터페이스를 구현한다.
+4. 사용시점
+   - 다른 개발자가 작성한 클래스를 재사용해야 한다.
+   - 클라이언트가 요구하는 인터페이스와 재사용하려는 클래스의 인터페이스가 일치하지 않는다.
+   - 애플리케이션에 필요한 기능을 이미 구현한 기존의 클래스가 있는데 수정이 불가능하거나 수정을 하였을 경우에 버그가 발생할 가능성이 높다.
+5. 사용효과
+   - 인터페이스가 호환되지 않아 쓸 수 없었던 클래스들을 사용할 수 있게 해 준다.
+   - 기존 클래스가 제공하는 기능의 안전성을 그대로 유지할 수 있다.
+   - OCP 원칙을 준수
+
+## 어댑터 패턴 적용 예시
+
+<img alt="어댑터패턴예시" src="./asset/어댑터패턴예시.png" width="800px">
+
+```typescript
+abstract class Fighter {
+  abstract attack(): void
+  abstract defend(): void
+  abstract escape(): void
+}
+
+class Warrior extends Fighter {
+  attack() {
+    console.log("칼을 휘두르기")
+  }
+
+  defend() {
+    console.log("방패 들기")
+  }
+
+  escape() {
+    console.log("도망")
+  }
+}
+
+class WizardAdapter extends Fighter {
+  constructor(wizard: Wizard) {
+    this.wizard = wizard
+  }
+  attack() {
+    this.wizard.short_fire_ball()
+  }
+
+  defend() {
+    this.wizard.shield()
+  }
+
+  escape() {
+    this.wizard.portal()
+  }
+}
+
+class Wizard {
+  shot_fire_ball() {
+    console.log("파이어볼 발사")
+  }
+
+  shield() {
+    console.log("보호막 씌우기")
+  }
+
+  portal() {
+    console.log("포탈 열고 이동")
+  }
+}
+
+const fighter = getFighter(someCondition)
+fighter.attack()
+fighter.defend()
+fighter.escape()
+```
