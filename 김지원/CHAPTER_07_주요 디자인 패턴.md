@@ -83,3 +83,46 @@ OnExcuted
 ESA팀  
 쇼핑몰  
 은행  
+  
+  
+  
+# 프록시 패턴
+
+프록시 패턴은 어떤 다른 객체로 접근하는 것을 **통제**하기 위해서 그 객체의 대리자(surrogate)나 자리표시자(placeholder)의 역할을 하는 객체를 제공하는 패턴
+
+```
+class 대표
+class 부장
+class 과장
+class 대리
+class 사원
+```
+
+```
+대표, 부장
+public 결재(){
+  결재 허용
+}
+```
+
+휴가 결재를 올릴 때 허가할 수 있는 사람 : 대표 , 부장
+
+```
+public void 프록시(Person person, Command cmd){
+  if(person is 대표 부장){
+    cmd()  // == 결재()
+  }
+  else{
+    throw new Exception
+  }
+}
+```
+
+https://readystory.tistory.com/132
+
+
+# 프록시 패턴 vs 데코레이터 패턴
+
+데코레이터 패턴은 **객체에 기능을 동적으로 추가**하는데 중점  
+프록시 패턴은 객체에 대한 **액세스를 제어**하는데 중점
+
