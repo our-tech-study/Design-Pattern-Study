@@ -441,7 +441,7 @@ class WizardAdapter extends Fighter {
     this.wizard = wizard
   }
   attack() {
-    this.wizard.short_fire_ball()
+    this.wizard.shot_fire_ball()
   }
 
   defend() {
