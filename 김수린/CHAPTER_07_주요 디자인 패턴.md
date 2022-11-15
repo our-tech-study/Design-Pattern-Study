@@ -137,14 +137,17 @@ public class StatusChecker extends StatusSubject{ // 주제 클래스 상속
 <br/>
 
 <h3>옵저버 인터페이스)</h3>
+
 ```
 public interface StatusObserver {
 	void onAbnormalStatus(Status status);
 }
 ```
+
 <br/>
 <br/>
 <h3>콘크리트 옵저버 클래스)</h3>
+
 ```
 public class StatusEmailSender implements StatusObserver{ // 옵저버 인터페이스 상속 
 
@@ -158,13 +161,16 @@ public class StatusEmailSender implements StatusObserver{ // 옵저버 인터페
 	}
 }
 ```
+
 <br/>
 <br/>
 * 주제 객체의 상태에 변화가 생길 떄 그 내용을 통지받도록 하려면, 옵저버 객체를 주제 객체에 등록해주어야 함
+
 ```
 StatusChecker checker = new StatusChecker();
 checker.add(new StatusEmailSender()); // 옵저버로 등록
 ```
+
 <br/>
 <br/>
 
@@ -174,9 +180,11 @@ checker.add(new StatusEmailSender()); // 옵저버로 등록
 <br/>
 
 이메일 뿐만 아니라 긴급한 메세지는 SMS로 바로 알려주는 기능을 추가해 달라는 요구가 들어오면? 🙋‍♀️
+
 ```
 checker.add(new FaultStatusSmsSender()); // 옵저버로 등록하기만 하면 끝
 ```
+
 <br/>
 => 주제 클래스인 StatusChecker 코드는 바뀌지 X
 
@@ -193,6 +201,7 @@ FaultStatusSmsSender 클래스는 장애 상태인 경우에만 SMS 전송 예�
 <br/>
 
 <h3>기존 주제 객체)</h3>
+
 ```
 public abstract class StatusSubject { 
 	private List<StatusObserver> observers = new ArrayList<StatusObserver>();
@@ -213,9 +222,11 @@ public abstract class StatusSubject {
 	}
 }
 ```
+
 <br/>
 <br/>
 <h3>기존 콘크리트 옵저버 클래스)</h3>
+
 ```
 public class FaultStatusSmsSender implements StatusObserver{ 
 
@@ -235,6 +246,7 @@ public class FaultStatusSmsSender implements StatusObserver{
 * 경우에 따라 전달 받은 status 객체 만으로 원하는 기능을 구현할 수 없는 경우 존재<br/>
 -> 이런 경우에는 옵저버 객체에서 콘크리트 주제 객체에 '직접 접근'하는 방법을 사용함<br/>
 <br/>
+
 ```
 public class SpecialStatusObserver implements StatusObserver {
 	private StatusChecker statusChecker; 
@@ -264,6 +276,7 @@ public class SpecialStatusObserver implements StatusObserver {
 <h2>1. 주제 객체의 통지 기능 실행 주제</h2>
 -> 옵저버에 통지하는 시점을 결정하는 주체가 누가 되느냐<br/>
 <br/>
+
 ```
 // StatucChecker가 통지하는 시점 결정
 public class StatucChecker exends StatusSubject {
@@ -282,6 +295,7 @@ ex) 여러 StatucChecker 객체로부터 상태 정보 읽어 와 모두 비정�
 <br/>
 
 <h3>주제 객체를 사용하는 코드에서 통지 기능 수행)</h3>
+
 ```
 StatucChecker checker1 = ...;
 StatucChecker checker2 = ...;
@@ -397,6 +411,7 @@ public AnyObserver implements SomeObserver{
 
 <br/>
 <h3>올바른 상태 값 사용하도록 템플릿 메서드 패턴 적용)<h3>
+
 ```
 // 상위 클래스
 public class SomeSubject {
@@ -422,6 +437,7 @@ public class AnySubject extends SomeSubject {
 	}
 }
 ```
+
 <br/>
 -> 상위 클래스의 changeState() 메서드는 internalChangeState() 메서드 호출한 뒤에 notifyObserver() 메서드 호출해서 옵저버에게 상태 변화 통지<br/>
 => AnySubject 클래스의 internalChangeState() 메서드에서 상태 변화 후 옵저버 객체가 상태 값 접근하게 됨<br/>
@@ -445,6 +461,7 @@ public void changeState(int newState){
 	notifyToObserver();
 }
 ```
+	
 <br/>
 <br/>
 만약 10개의 옵저버 객체가 있고, 각 옵저버 객체의 onStatusChange() 메서드마다 실행 시간이 십 분 이상 걸린다면?<br/>
