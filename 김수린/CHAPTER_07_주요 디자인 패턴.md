@@ -180,7 +180,7 @@ checker.add(new FaultStatusSmsSender()); // 옵저버로 등록하기만 하면 
 <br/>
 <br/>
 
-##3. 옵저버 객체에게 상태 전달 방법
+## 3. 옵저버 객체에게 상태 전달 방법
 
 * 상황에 따라 '옵저버 객체'가 기능을 수행하기 위해 '주제 객체'의 상태가 필요할 수 있음<br/>
 ex) FaultStatusSmsSender 클래스는 장애 상태인 경우에만 SMS 전송 예정<br/>
