@@ -63,14 +63,13 @@ public class StatusChecker{
 ## 2. 옵저버 패턴에서 등장하는 두 가지 객체
 
 <h3>옵저버 패턴에서 등장하는 두 가지 객체)</h3>
-- 주제(subject) 객체 -> 발행자 <br/>
+1. 주제(subject) 객체 -> 발행자 <br/>
 : 본인이 알고 있는 구독자 목록에 '어떤 것'을 '특정 조건 달성 시' 발행함 <br/>
 <br/>
 
-- 옵저버 (observer) 객체 -> 구독자 <br/>
+2. 옵저버 (observer) 객체 -> 구독자 <br/>
 : 발행자가 발행한 내용을 수신 받음 <br/>
 
-<br/>
 <br/>
 -> 한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 객체들한테 연락이 가고 자동으로 내용이 갱신되는 방식<br/>
 -> 한 객체(subject)의 상태가 변경되면 그 객체에 의존하고 있는 모든 객체(observers)에게 연락이 감<br/>
@@ -89,6 +88,7 @@ public class StatusChecker{
  <br/>
  
 <h3>주제 클래스 예시)</h3>
+
 ```
 public abstract class StatusSubject { // 추상 클래스로 구현
 	private List<StatusObserver> observers = new ArrayList<StatusObserver>();
@@ -112,6 +112,7 @@ public abstract class StatusSubject { // 추상 클래스로 구현
 ```
 
 <h3>주제 클래스의 콘크리스 클래스 예시)</h3>
+
 ```
 public class StatusChecker extends StatusSubject{ // 주제 클래스 상속
 	public void check() {
