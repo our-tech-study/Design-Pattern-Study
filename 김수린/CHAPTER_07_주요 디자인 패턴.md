@@ -16,8 +16,9 @@
 <br/>
 
 <h3>옵저버 패턴 사용하는 유형)</h3>
-```
+
 // 웹 사이트의 상태를 확인해서 응답 속도가 느리거나 연결이 안 되면 모니터링 담당자에게 이메일로 통지해주는 시스템
+```
 public class StatusChecker{
 	private EmailSender emailSender;
 	
