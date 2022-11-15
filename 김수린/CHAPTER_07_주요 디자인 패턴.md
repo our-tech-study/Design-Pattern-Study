@@ -363,7 +363,7 @@ public class OnlyClickObserver implements EventObserver {
 <br/>
 <br/>
 
-<h2>3. 통지 시점에서의 주제 객체 상태<h2>
+<h2>3. 통지 시점에서의 주제 객체 상태</h2>
 -> 통지 시점에서 주제 객체의 상태에 결함이 없어야 함<br/>
 
 ```
