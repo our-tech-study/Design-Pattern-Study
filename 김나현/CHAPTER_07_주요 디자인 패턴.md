@@ -47,10 +47,10 @@
 - Concrete Collegue : 미디에이터 객체를 파악하고 다른 Colleague 객체와 상호작용이 필요하다면 미디에이터 클래스를 통해 통신
 <br/>
 
-① Register와 Send 메소드는 추상클래스 내에서 이미 구현 
-② Mediator에는 상호작용하는 객체를 담을 수 있는 그릇 역할을 하는 List 형태 변수가 있고 add 메소드를 통해 Colleague를 등록
-③ Colleague 클래스는 연결되어 있는 Mediator를 알고 있어야 중재자와 객체 간 상호작용이 가능
-   연결할 Mediator를 register 메소드를 통해 등록
+① Register와 Send 메소드는 추상클래스 내에서 이미 구현 <br/>
+② Mediator에는 상호작용하는 객체를 담을 수 있는 그릇 역할을 하는 List 형태 변수가 있고 add 메소드를 통해 Colleague를 등록<br/>
+③ Colleague 클래스는 연결되어 있는 Mediator를 알고 있어야 중재자와 객체 간 상호작용이 가능<br/>
+   연결할 Mediator를 register 메소드를 통해 등록<br/>
 ④ Mediator는 Colleague 객체가 동작을 send하면 mediate메소드를 통해 기능을 handle
 <br/>
 <br/>
