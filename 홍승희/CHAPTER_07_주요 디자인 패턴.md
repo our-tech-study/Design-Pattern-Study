@@ -38,6 +38,8 @@
 └── └── Bike.Test  
 ``` 
 
+</br>
+
 - IBikeFactory   
 ```c#
 public interface IBikeFactory
@@ -51,7 +53,10 @@ public interface IBikeFactory
 ```c#
 public class GtBikeFactory : IBikeFactory 
 {
+  #region [propeties]
   public string Name => "gt";
+  #endregion 
+  
   public IBikeBody CreateBikeBody()
   {
     return new GtBikeBody();
@@ -66,7 +71,10 @@ public class GtBikeFactory : IBikeFactory
 ```c#
 public class SamchullyBikeFactory : IBikeFactory 
 {
+  #region [propeties]
   public string Name => "samchully";
+  #endregion 
+  
   public IBikeBody CreateBikeBody()
   {
     return new SamchullyBikeBody();
@@ -81,12 +89,16 @@ public class SamchullyBikeFactory : IBikeFactory
 ```c#
 public class BikeManager
 {
+  #region [fields]
   private IDictionary<string, IBikeFactory> _bikeFactories;
+  #endregion
   
+  #region [constructor]
   public BikeManager()
   {
     this._bikeFactories = new Dictionary<string, IBikeFactory>();
   }
+  #endregion
   
   public void RegisterFactory(IBikeFactory factory, string factoryName = null)
   {
