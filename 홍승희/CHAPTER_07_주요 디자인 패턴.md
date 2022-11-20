@@ -147,6 +147,56 @@ public class Tests
 }
 ```
 
+</br>
+</br>
+
+# Chapter7. 주요 디자인 패턴 - 파사드 패턴
+
+</br>
+
+## 1. 파사드 패턴(Facade Pattern)  
+- 어떤 기능을 수행하기 위한 여러 객체들 사이의 목잡한 관계/메서드 사용을 `감춰서 단순화`하는 패턴.   
+- 여러 객체들 사이의 복잡한 관계를 `블랙박스화해서 단순화`하는 것.  
+
+<br/>
+
+## 2. 샘플  
+
+- ex. DB에서 데이터를 `조회`해서 `가공` 후 출력하는 기능
+```text
+1. Cache 조회
+2. DB 조회 
+3. Cache에 입력
+4. 조회 결과 가공
+5. 가공된 결과 출력
+```   
+
+</br>
+
+```bash
+├── FacadePattern.csproj 
+│   ├── Row.cs 
+│   ├── Cache.cs 
+│   ├── Db.cs 
+│   ├── Message.cs
+│   └── Facade.cs 
+│    
+└── TestProject.csproj
+``` 
+
+</br>
+
+- Row.cs   
+```c# 
+
+```
+
+
+  
+
+
+
+
 
 
 
