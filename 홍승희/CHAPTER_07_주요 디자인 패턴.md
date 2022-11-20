@@ -188,27 +188,246 @@ public class Tests
 ```bash
 ├── FacadePattern
 │   ├── Row.cs 
-│   ├── Cache.cs 
 │   ├── Db.cs 
+│   ├── Cache.cs 
 │   ├── Message.cs
 │   └── Facade.cs 
 │    
 └── TestProject
-```  
+```    
+```text
+C:\Users\20105seunghui\source\study\FacadePattern\FacadePattern.sln
+```
 
 </br>
 
 - Row.cs   
 ```c# 
+public class Row
+{
+    #region [properties]
+    public string Name { get; private set; }
+    public string Birthday { get; private set; }
+    public string Email { get; private set; }
+    #endregion
 
+    #region [constructor]
+    public Row(string name, string birthday, string email)
+    {
+        Name = name;
+        Birthday = birthday;
+        Email = email;
+    }
+    #endregion
+}
+```  
+- Db.cs  
+```c# 
+public class DB
+{
+    #region [fields]
+    private IDictionary<string, Row> _rows = new Dictionary<string, Row>(StringComparer.OrdinalIgnoreCase);
+    #endregion
+
+    #region [constructor]
+    public DB()
+    {
+        _rows.Add("seunghui", new Row("seunghui", "1997-04-06", "shwnddow@gmail.com"));
+        _rows.Add("jane", new Row("jane", "1979-11-05", "jane09@naver.com"));
+        _rows.Add("dorosh", new Row("dorosh", "1985-08-21", "dorosh@haha.com"));
+    }
+    #endregion
+
+    public bool TryFetch(string name, out Row row)
+    {
+        return _rows.TryGetValue(name, out row);
+    }
+}
+```   
+- Cache.cs   
+```c# 
+public class Cache
+{
+    #region [fields]
+    private IDictionary<string, Row> _rows = new Dictionary<string, Row>(StringComparer.OrdinalIgnoreCase);
+    #endregion
+
+    public void Put(Row row)
+    {
+        _rows[row.Name] = row;
+    }
+
+    public bool TryFetch(string name, out Row row)
+    {
+        return _rows.TryGetValue(name, out row);
+    }
+}
+```  
+- Message.cs   
+```c#
+public class Message
+{
+    #region [fields]
+    private Row _row;
+    #endregion
+
+    #region [constructor]
+    public Message(Row row)
+    {
+        this._row = row;
+    }
+    #endregion
+
+    public string GetName()
+    {
+        return $"Name: {_row.Name}";
+    }
+    public string GetBirthDay()
+    {
+        return $"Birthday: {_row.Birthday}";
+    }
+    public string GetEmail()
+    {
+        return $"Email: {_row.Email}";
+    }
+}
+```  
+- UnitTest.cs   
+```c# 
+public class Tests
+{
+    private DB _db;
+    private Cache _cache;
+
+    [SetUp]
+    public void Setup()
+    {
+        _db = new DB();
+        _cache = new Cache();
+    }
+
+    [Test]
+    public void Test1()
+    {
+        var name = "dorosh";
+
+        if (!_cache.TryFetch(name, out Row row)) {
+            if (!_db.TryFetch(name, out row)) {
+                Console.WriteLine($"{name} is not exists");
+                return;
+            }
+
+            _cache.Put(row);
+        }
+
+        var msg = new Message(row);
+        Console.WriteLine(msg.GetName());
+        Console.WriteLine(msg.GetBirthDay());
+        Console.WriteLine(msg.GetEmail());
+    }
+}
+```  
+
+</br>
+
+📝 개발자가 위 기능을 사용하기 위해 알아야 하는 정보  
+```text 
+- 데이터를 조회~출력하기까지 여러 객체들이 사용되고 있다.   
+- DB로 조회된 데이터는 캐싱하는 것을 잊지 않아야 한다.   
+- 데이터를 가공하기 위해 Message라는 객체를 사용해야 함을 알아야 한다.   
 ```
+➜ `파사드 패턴을 적용`하여 단순화 가능.    
 
+</br>
 
+- Facade.cs   
+```c# 
+public class Facade
+{
+    #region [fields]
+    private DB _db;
+    private Cache _cache;
+    #endregion
+
+    #region [constructor]
+    public Facade()
+    { 
+        _db = new DB();
+        _cache = new Cache();
+    }
+    #endregion
+
+    public void Run(string name)
+    {
+        if (!_cache.TryFetch(name, out Row row)) {
+            if (!_db.TryFetch(name, out row)) {
+                Console.WriteLine($"{name} is not exists");
+                return;
+            }
+
+            _cache.Put(row);
+        }
+
+        var msg = new Message(row);
+        Console.WriteLine(msg.GetName());
+        Console.WriteLine(msg.GetBirthDay());
+        Console.WriteLine(msg.GetEmail());
+    }
+}
+```  
   
+- UnitTest.cs   
+```c# 
+public class Tests
+{
+    private DB _db;
+    private Cache _cache;
 
+    [SetUp]
+    public void Setup()
+    {
+        _db = new DB();
+        _cache = new Cache();
+    }
 
+    [Test]
+    public void Test1()
+    {
+        var name = "dorosh";
 
+        if (!_cache.TryFetch(name, out Row row)) {
+            if (!_db.TryFetch(name, out row)) {
+                Console.WriteLine($"{name} is not exists");
+                return;
+            }
 
+            _cache.Put(row);
+        }
+
+        var msg = new Message(row);
+        Console.WriteLine(msg.GetName());
+        Console.WriteLine(msg.GetBirthDay());
+        Console.WriteLine(msg.GetEmail());
+    }
+
+    [Test]
+    public void Test2()
+    {
+        var name = "dorosh";
+        new Facade().Run(name);
+    }
+}
+```  
+
+</br>
+
+📝 정리    
+```text 
+- 개발자는 위 기능을 사용하기 위해 필요한 여러 클래스들을 파악하지 않고, 파사드 객체만 알면 된다. 
+
+- 다른 개발자에게 라이브러리나 패키지 형태로 코드를 제공할 때 파사드 패턴을 적용하면, 파사드 클래스만 오픈하고 그 외 나머지 클래스는 비공개 처리해도 된다. 
+➜ 해당 라이브러리를 받아 쓰는 개발자 입장에서 부담이 줄게 됨.      
+```
 
 
 
