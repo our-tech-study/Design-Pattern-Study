@@ -3,7 +3,7 @@
 </br> 
 
 ## 목차 
-1. [추상 팩토리 패턴](#1.-추상-팩토리-패턴-abstract-factory-pattern)
+1. [추상 팩토리 패턴](#1-추상-팩토리-패턴-abstract-factory-pattern)
 2. 
 
 </br>
