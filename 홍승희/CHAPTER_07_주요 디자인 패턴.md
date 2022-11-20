@@ -1,12 +1,21 @@
-# Chapter7. 주요 디자인 패턴 - 추상 팩토리 패턴
-
-</br> 
-
-## 목차 
-1. [추상 팩토리 패턴](#1-추상-팩토리-패턴-abstract-factory-pattern)
-2. 
+# Chapter7. 주요 디자인 패턴
 
 </br>
+
+## 목차
+추상 팩토리 패턴   
+    1. [추상 팩토리 패턴](#1-추상-팩토리-패턴abstract-factory-pattern)  
+    2. [추상 팩토리 패턴 - 샘플](#2-추상-팩토리-패턴---샘플)    
+
+</br>
+
+파사드 패턴  
+    1. [파사드 패턴](#1-파사드-패턴facade-pattern)  
+    2. [파사드 패턴 - 샘플](#2-파사드-패턴---샘플)     
+
+</br>
+
+# 추상 팩토리 패턴
 
 ## 1. 추상 팩토리 패턴(Abstract Factory Pattern)  
 - 다양한 구성 요소 별로 `객체의 집합`을 생성해야 할 때 유용한 패턴.  
@@ -14,7 +23,7 @@
 
 <br/>
 
-## 2. 샘플  
+## 2. 추상 팩토리 패턴 - 샘플  
   
 ```bash
 ├── 01 (공통)
@@ -160,13 +169,13 @@ public class Tests
 
 </br>
 
-## 1. 파사드 패턴(Facade Pattern)  
+## 1. 파사드 패턴(Facade Pattern)
 - 어떤 기능을 수행하기 위한 여러 객체들 사이의 목잡한 관계/메서드 사용을 `감춰서 단순화`하는 패턴.   
 - 여러 객체들 사이의 복잡한 관계를 `블랙박스화해서 단순화`하는 것.  
 
 <br/>
 
-## 2. 샘플  
+## 2. 파사드 패턴 - 샘플  
 
 - ex. DB에서 데이터를 `조회`해서 `가공` 후 출력하는 기능
 ```text
@@ -176,19 +185,16 @@ public class Tests
 4. 조회 결과 가공
 5. 가공된 결과 출력
 ```   
-
-</br>
-
 ```bash
-├── FacadePattern.csproj 
+├── FacadePattern
 │   ├── Row.cs 
 │   ├── Cache.cs 
 │   ├── Db.cs 
 │   ├── Message.cs
 │   └── Facade.cs 
 │    
-└── TestProject.csproj
-``` 
+└── TestProject
+```  
 
 </br>
 
