@@ -30,7 +30,7 @@ public class PowerController {
 	// 개별 장비의 전원을 킴
 	public void turnOn(Long deviceId){
 		Device device = findDeviceById(Long deviced);
-		device.turnOn()l
+		device.turnOn();
 	}
 	
 	// 장비 그룹의 전원을 킴
