@@ -23,7 +23,7 @@ ex) 빌딩의 장비들의 전원을 관리하는 제어 프로그램 개발<br/
 
 <br/>
 
-![수린](https://user-images.githubusercontent.com/61374766/203269683-065dc758-168e-4e4c-b956-6b2468d78150.PNG
+![수린](https://user-images.githubusercontent.com/61374766/203269683-065dc758-168e-4e4c-b956-6b2468d78150.PNG)
 
 ```
 // 장비들의 전원을 제어하는 컨트롤러
