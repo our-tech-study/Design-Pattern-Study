@@ -22,7 +22,8 @@ ex) 빌딩의 장비들의 전원을 관리하는 제어 프로그램 개발<br/
 -> 개별 장비가 아닌 장비들을 하나로 묶어서 관리하는 클래스 추가<br/>
 
 <br/>
-@@@ diagram
+
+file:///C:/Users/20098surin/Desktop/%EC%88%98%EB%A6%B0.PNG
 
 ```
 // 장비들의 전원을 제어하는 컨트롤러
@@ -51,8 +52,7 @@ public class PowerController {
 => 이런 단점을 해소하기 위해 사용되는 패턴이 바로 '컴포지트(composite) 패턴'<br/>
 <br/>
 
-![수린](https://user-images.githubusercontent.com/61374766/203269016-597605aa-c057-49cf-8d22-b0b74c075f22.PNG)
-
+@@@
 -> 전체-부분을 구성하는 클래스가 동일 인터페이스를 구현하도록 만듦<br/>
 => 부분(Aircon, Light 등)과 전체(DeviceGroup)를 한 개의 인터페이스로 추상화<br/>
 <br/>
