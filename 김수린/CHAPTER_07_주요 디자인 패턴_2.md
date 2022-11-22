@@ -155,13 +155,14 @@ allLightGroup.turnOff(); //모든 층의 Light 객체의 turnOnff() 실행
 ```
 
 <br/>
-## 3. 컴포지트 패턴의 장점
+
+## 3. 컴포지트 패턴의 장점<br/>
 1. 전체냐 부분이냐, 개별이냐 그룹이냐에 상관 없이 클라이언트는 단일 인터페이스로 기능 실행 가능<br/>
 2. 컴포지트 자체도 컴포넌트이기 때문에 컴포지트에 다른 컴포지트를 등록할 수 있음<br/>
 <br/>
 <br/>
 
-## 4. 컴포지트 패턴 구현 시 고려 사항
+## 4. 컴포지트 패턴 구현 시 고려 사항<br/>
 1. 컴포넌트를 관리하는 인터페이스를 어디서 구현할 지에 대한 여부<br/>
 
 <br/>
@@ -176,6 +177,8 @@ ex)
 DeviceGroup allLightGroup = new DeviceGroup();
 allLightGroup.add(firstFloorLightGroup);
 ```
+<br/>
+<br/>
 
 2. 컴포넌트<br/>
 그럼 Device 타입에 컴포넌트를 관리하는 인터페이스를 추가하면 <br/>
@@ -190,11 +193,15 @@ public void addDeviceTo(Device device, Integer toDeviceId){
 }
 ```
 <br/>
-그렇게 될 경우... 컴포넌트를 상속 받는 컴포지트가 아닌 단말의 입장에선 컴포넌트를 관리하는 코드가 정상 작동하면 X<br/>
+그렇게 될 경우..🙄.<br/>
+컴포넌트를 상속 받는 컴포지트가 아닌 단말의 입장에선 컴포넌트를 관리하는 코드가 정상 작동하면 ❌<br/>
+<br/>
 ex) Light 클래스나 Aircon 클래스들은 컴포넌트들을 추가하고 제거하는 컴포넌트를 관리하는 기능이 정상적으로 동작하면 X<br/>
+<br/>
 <br/>
 => 이런 상황이 발생하지 않도록 컴포넌트에 익셉션을 발생시키는 기본 구현을 추가하고 <br/>
 DeviceGroup 클래스에서 알맞게 재정의하도록 구현<br/>
+<br/>
 
 ```
 ex)
@@ -227,8 +234,11 @@ public class GroupDevice extends Device {
 } 
 ```
 <br/>
-익셉션을 발생시키는 방법보다 조금 더 나은 방법이 있다면?<br/>
+<br/>
+익셉션을 발생시키는 방법보다 조금 더 나은 방법이 있다면❓<br/>
 컴포넌트를 추가할 수 있는지의 여부를 판단 해주는 기능을 Device 타입에 정의<br/>
+
+<br/>
 
 ```
 ex)
@@ -265,7 +275,10 @@ public void addDeviceTo(Device device, Integer toDeviceId){
 }
 ```
 <br/>
+<br/>
 - canContain() 메서드는 객체 등록 뿐만 아니라 컴포지트에서 포함할 객체를 제한할 때에도 사용 가능<br/> 
+
+
 ```
 ex)
 // Aircon 객체만 포함하는 컴포지트 클래스
