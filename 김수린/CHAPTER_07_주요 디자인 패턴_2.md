@@ -269,7 +269,8 @@ public  class GroupDevice extends Device{
 }
 ```
 <br/>
-- canContarin() 메서드는 파라미터로 전달받은 Device 객체를 추가할 수 있는지에 대한 여부를 판단하는 책임을 가짐<br/>
+
+canContarin() 메서드는 <b>파라미터로 전달받은 Device 객체를 추가할 수 있는지에 대한 여부를 판단</b>하는 책임을 가짐<br/>
 => 특정 Device 객체에 다른 Device 객체를 추가할 때에는 canContain() 메서드 이용해 가능<br/>
 
 ```
