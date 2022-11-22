@@ -52,7 +52,8 @@ public class PowerController {
 => 이런 단점을 해소하기 위해 사용되는 패턴이 바로 '컴포지트(composite) 패턴'<br/>
 <br/>
 
-@@@
+![수린2](https://user-images.githubusercontent.com/61374766/203270946-d2ba0787-3bf7-417b-9089-884fcd35c6a1.PNG)
+
 -> 전체-부분을 구성하는 클래스가 동일 인터페이스를 구현하도록 만듦<br/>
 => 부분(Aircon, Light 등)과 전체(DeviceGroup)를 한 개의 인터페이스로 추상화<br/>
 <br/>
