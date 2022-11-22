@@ -170,6 +170,7 @@ allLightGroup.turnOff(); //모든 층의 Light 객체의 turnOnff() 실행
 <br/>
 <br>컴포넌트를 관리하는 인터페이스 구현 위치)</b></br>
 1. 컴포지트<br/>
+<br/>
 컴포넌트의 그룹을 관리하는 코드는 컴포지트에 존재<br/>
 => 그룹 장비를 만들어야 하는 코드는 그룹 장비 타입에 '직접' 접근해야 함<br/>
 <br/>
@@ -182,11 +183,15 @@ allLightGroup.add(firstFloorLightGroup);
 <br/>
 <br/>
 
-2. 컴포넌트<br/>
 그럼 Device 타입에 컴포넌트를 관리하는 인터페이스를 추가하면 <br/>
-'클라이언트 입장'에서 DeviceGroup 타입을 사용하지 않고도 그룹 생성할 수 있지 않을까?<br/>
- <br/>
- 
+<b>'클라이언트 입장'</b>에서 DeviceGroup 타입을 사용하지 않고도 그룹 생성할 수 있지 않을까?<br/>
+
+<br/>
+<br/>
+
+2. 컴포넌트<br/>
+
+
 ```
 ex)
 public void addDeviceTo(Device device, Integer toDeviceId){
