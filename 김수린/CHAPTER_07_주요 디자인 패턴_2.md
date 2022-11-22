@@ -243,13 +243,15 @@ public class GroupDevice extends Device {
 <br/>
 <br/>
 익셉션을 발생시키는 방법보다 조금 더 나은 방법이 있다면❓<br/>
-컴포넌트를 추가할 수 있는지의 여부를 판단 해주는 기능을 Device 타입에 정의<br/>
+-> 컴포넌트를 추가할 수 있는지의 여부를 판단 해주는 기능을 Device 타입에 정의<br/>
 
 <br/>
 
 ```
 ex)
 public abstract class Device{
+
+	// 컴포넌트를 추가할 수 있는지의 여부를 판단
 	public boolean canContain(Device device){
 		return false;
 	}
@@ -258,6 +260,8 @@ public abstract class Device{
 // GroupDevice에서 알맞게 재정의
 public  class GroupDevice extends Device{
 	...
+	
+	//컴포넌트를 추가할 수 있는지의 여부를 판단
 	@Override
 	public boolean canContain(Device d){
 		return true;
