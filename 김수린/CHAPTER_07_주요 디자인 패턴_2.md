@@ -114,8 +114,9 @@ group.addDevice(device2);
 group.turnOn(); 
 // device1과 device2의 turnOn() 실행 
 //=> 각 Aircon과 Light의 turnOn() 실행
+```
 
-
+```
 // 장비들의 전원을 제어하는 컨트롤러
 public class PowerController {
 	// DeviceGroup 클래스는 Device 타입
